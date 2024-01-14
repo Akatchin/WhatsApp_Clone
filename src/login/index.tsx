@@ -1,8 +1,14 @@
+import api from "../api"
 import "./styles.css"
 
 export const Login = () => {
-    const handleFacebookLogin = () => {
-        
+    const handleFacebookLogin = async () => {
+        const result = await api.fbPopup;
+        if(result) {
+
+        } else {
+            alert("Erro!")
+        }
     }
 
     return (
