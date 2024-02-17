@@ -44,7 +44,7 @@ export const SideBar = () => {
         dispatch(enable(key))
     }
 
-    if(thisLogin === false) {
+    if(thisLogin !== true) {
         return (
             <Login onReceive={setThisLogin}/>
         )
