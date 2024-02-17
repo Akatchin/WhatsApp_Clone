@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "CommonJS",
-    "skipLibCheck": true,
-    "outDir": "out",
-    "sourceMap": true,
+    "lib": ["es6", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
 
     /* Bundler mode */ 
     "moduleResolution": "Bundler",
