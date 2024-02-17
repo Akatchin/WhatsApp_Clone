@@ -23,7 +23,7 @@
     "@types/react-speech-recognition": "^3.9.5",
     "emoji-picker-react": "^4.6.0",
     "firebase": "^10.7.1",
-    "react": "^16.8.0",
+    "react": "16.8.0",
     "react-dom": "^16.8.0",
     "react-redux": "^9.0.4",
     "redux": "^5.0.1",
