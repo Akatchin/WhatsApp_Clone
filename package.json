@@ -32,7 +32,8 @@
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
-    "react": "17.0.0 || 18.0.0"
+    "react": "17.0.0 || 18.0.0",
+    "@mui/icons-material": "^5.15.10"
   },
   "devDependencies": {
     "@types/react": "17.0.0",
