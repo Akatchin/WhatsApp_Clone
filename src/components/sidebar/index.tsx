@@ -3,7 +3,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
 import { ChatListItem } from '../chatlistitem';
-
+import { FacebookAuthProvider } from "firebase/auth"
 
 import { useEffect, useState } from 'react';
 
@@ -21,30 +21,22 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 import { chatActive, enable } from '../../redux/sliceActive';
-import { chatAuth, userAuth } from '../../redux/sliceAuth';
+import { loginData } from '../../redux/sliceLogin';
 import { NewChat } from '../newchat';
+import Login from '../../login';
 
 export const SideBar = () => {
 
-    const [chatlist, setChatList] = useState([
-        {chatId: 1, title: "Fulano", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLmVZ8DOOE0zspKF0OQf02HuVrna3NKt-tBA&usqp=CAU" },
-        {chatId: 2, title: "Fulano", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLmVZ8DOOE0zspKF0OQf02HuVrna3NKt-tBA&usqp=CAU" },
-        {chatId: 3, title: "Fulano", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLmVZ8DOOE0zspKF0OQf02HuVrna3NKt-tBA&usqp=CAU" }
-    ])
-
-    const [author, setAuthor] = useState({
-        id: 1234,
-        avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLmVZ8DOOE0zspKF0OQf02HuVrna3NKt-tBA&usqp=CAU" ,
-        name: "Thiago Henrique"
-    })
+    const [chatlist, setChatList] = useState([])
 
     const [showNewChat, setShowNewChat] = useState(false)
+    const [thisLogin, setThisLogin] = useState(false)
     const handleNewChat = () => {
         setShowNewChat(true)
     }
 
-    const {authData} = useSelector(chatAuth)
     const {user} = useSelector(chatActive)
+    const {userLogged} = useSelector(loginData)
 
     const dispatch = useDispatch()
 
@@ -52,49 +44,51 @@ export const SideBar = () => {
         dispatch(enable(key))
     }
 
-    useEffect(() => {
-        dispatch(userAuth(author))
-    },[])
-    
-
-    return(
-        <SideArea>
-            <NewChat
-                chatlist={""}
-                user={user}
-                show={showNewChat}
-                setShow={setShowNewChat} 
-            />
-            <Header>
-                <Image src={authData.avatar}/>
-                <HeaderButtons>
-                    <HeaderButton>
-                        <DonutLargeIcon style={{color: '#919191'}}/>
-                    </HeaderButton>
-                    <HeaderButton onClick={handleNewChat}>
-                        <ChatIcon style={{color: '#919191'}}/>
-                    </HeaderButton>
-                    <HeaderButton>
-                        <MoreVertIcon style={{color: '#919191'}}/>
-                    </HeaderButton>
-                </HeaderButtons>
-            </Header>
-            <Search>
-                <SearchArea>
-                    <SearchIcon fontSize='small' style={{color: '#919191'}}/>
-                    <SearchInput type='search' placeholder='Procurar ou começar uma nova conversa'/>
-                </SearchArea>
-            </Search>
-            <ChatArea>
-            {chatlist.map((item, key) => (
-                <ChatListItem
-                    key={key}
-                    data={item} 
-                    active={user.chatId == chatlist[key].chatId}
-                    onClick={() => activeChat(chatlist[key])}
+    if(thisLogin === false) {
+        return (
+            <Login onReceive={setThisLogin}/>
+        )
+    }
+    else {
+        return (
+            <SideArea>
+                <NewChat
+                    chatlist={""}
+                    user={user}
+                    show={showNewChat}
+                    setShow={setShowNewChat}
                 />
-            ))}
-            </ChatArea>
-        </SideArea>
-    )
-}
+                <Header>
+                    <Image src={userLogged.avatar}/>
+                    <HeaderButtons>
+                        <HeaderButton>
+                            <DonutLargeIcon style={{ color: '#919191' }} />
+                        </HeaderButton>
+                        <HeaderButton onClick={handleNewChat}>
+                            <ChatIcon style={{ color: '#919191' }} />
+                        </HeaderButton>
+                        <HeaderButton>
+                            <MoreVertIcon style={{ color: '#919191' }} />
+                        </HeaderButton>
+                    </HeaderButtons>
+                </Header>
+                <Search>
+                    <SearchArea>
+                        <SearchIcon fontSize='small' style={{ color: '#919191' }} />
+                        <SearchInput type='search' placeholder='Procurar ou começar uma nova conversa' />
+                    </SearchArea>
+                </Search>
+                <ChatArea>
+                    {chatlist.map((item, key) => (
+                        <ChatListItem
+                            key={key}
+                            data={item}
+                            active={user.chatId == chatlist[key].chatId}
+                            onClick={() => activeChat(chatlist[key])}
+                        />
+                    ))}
+                </ChatArea>
+            </SideArea>
+        )
+    }
+    }

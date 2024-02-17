@@ -19,10 +19,6 @@ const sliceActive = createSlice({
     },
 )
 
-
-
-
-
 export default sliceActive.reducer
 export const {enable} = sliceActive.actions;
 

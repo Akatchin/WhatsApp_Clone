@@ -1,3 +1,8 @@
+import { initializeApp } from "firebase/app";
+import { getAuth, FacebookAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyABR0WdAy-j8m7KvAzPcZEX9hmMsPyi5s0",
     authDomain: "whatsappclone-adbf0.firebaseapp.com",
@@ -8,4 +13,25 @@ const firebaseConfig = {
     measurementId: "G-Z8RHQ7HFWF"
   };
 
-  export default firebaseConfig
+  const app = initializeApp(firebaseConfig)
+
+  const auth = getAuth(app)
+  const provider = new FacebookAuthProvider()
+
+  const db = getFirestore(app)
+
+  const addUsers = async (user) => {
+   
+    try {
+        const docRef = await addDoc(collection(db, "users"), {
+          id: user.id,
+          name: user.name,
+          avatar: user.avatar    
+        });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+}
+
+  export {auth, provider, addUsers}

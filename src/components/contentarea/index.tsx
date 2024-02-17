@@ -2,17 +2,17 @@ import { ChatH1, ChatH2, ChatIntro, Content, Image } from "./styles"
 import { useSelector } from "react-redux";
 import { chatActive } from "../../redux/sliceActive";
 import { ChatWindow } from "../chatWindow";
-import { chatAuth } from "../../redux/sliceAuth";
+import { loginData } from "../../redux/sliceLogin";
 
 export const ContentArea = () => {
     const {user} = useSelector(chatActive)
-    const {authData} = useSelector(chatAuth)
+    const {userLogged} = useSelector(loginData)
     
     return (
         <Content>
             {user.chatId !== undefined &&
                 <ChatWindow
-                    auth={authData}
+                    auth={userLogged}
             />
             }
             {user.chatId === undefined &&

@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import sliceActive from "./sliceActive";
-import sliceAuth from "./sliceAuth";
+import sliceLogin from "./sliceLogin";
 
 const store = configureStore({
     reducer: {
         chatReducer: sliceActive,
-        chatAuth: sliceAuth
+        loginReducer: sliceLogin
     }
 })
 
