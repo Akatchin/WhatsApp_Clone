@@ -3,9 +3,8 @@ import ChatIcon from '@mui/icons-material/Chat';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchIcon from '@mui/icons-material/Search';
 import { ChatListItem } from '../chatlistitem';
-import { FacebookAuthProvider } from "firebase/auth"
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { 
         Header, 
