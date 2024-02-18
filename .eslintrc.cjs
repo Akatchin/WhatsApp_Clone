@@ -17,4 +17,28 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  'jsx-runtime': {
+    plugins: [
+      react({
+      jsxRuntime: 'classic',
+    }),
+    ],
+
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true
+        
+      }
+    },
+    optimizeDeps: {
+      include: ['react/jsx-runtime'],
+    },
+    rules: {
+      'react/react-in-jsx-scope': 0,
+      'react/jsx-uses-react': 0,
+      "react/jsx-runtime" : 0
+    }
+  }
 }
+
+

@@ -1,12 +1,6 @@
 import { SetStateAction } from "react"
 import { OperationType, User } from "firebase/auth";
 
-interface UserCredential {
-    operationType: (typeof OperationType)[keyof typeof OperationType];
-    providerId: string | null;
-    user: User;
-}
-
 type propsType = {
     auth: {
         id: string,
@@ -24,9 +18,9 @@ type DataType = {
         uid: string,
         displayName: string,
         avatar: string,
-        providerData: [{uid: string}]
+        providerData: [{uid: string}], 
     },
-    credential: UserCredential
+   
 }
 
 type userType = {

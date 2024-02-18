@@ -1,5 +1,4 @@
 import "./styles.css"
-import { DataType } from "../type";
 import { auth, provider, addUsers } from "../firebaseConfig"
 import { FacebookAuthProvider, signInWithPopup } from "firebase/auth"
 import { useDispatch } from "react-redux";
@@ -10,8 +9,8 @@ const Login = ({ onReceive }: receive) => {
 
     const dispatch = useDispatch()
 
-    const handleLoginData = (result: DataType) => {
-        const credential = FacebookAuthProvider.credentialFromResult(result.credential);
+    const handleLoginData = (result: any) => {
+        const credential = FacebookAuthProvider.credentialFromResult(result);
         const accessToken = credential?.accessToken;
         fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
             .then((response) => response.blob())
@@ -31,7 +30,7 @@ const Login = ({ onReceive }: receive) => {
 
 
     const fbData = () => {
-        signInWithPopup(auth, provider).then((result: any) => {
+        signInWithPopup(auth, provider).then((result) => {
             handleLoginData(result)
         })
     }
