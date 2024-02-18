@@ -2,17 +2,17 @@ import { createSlice } from "@reduxjs/toolkit/react";
 
 interface Active {
     user: {
-        chatId: string,
+        id: string,
         name: string,
-        image: string
+        avatar: string
     }
 }
 
 const INITIAL_STATE: Active = {
     user: {
-        chatId: "",
+        id: "",
         name: "",
-        image: ""
+        avatar: ""
     }
 }
 

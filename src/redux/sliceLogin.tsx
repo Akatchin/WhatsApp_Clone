@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit/react";
 
 interface Auth {
-    userLogged: object
+    userLogged: {
+        id: string,
+        name: string,
+        avatar: string
+    }
 }
 
 const INITIAL_STATE: Auth = {

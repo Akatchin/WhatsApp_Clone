@@ -9,7 +9,7 @@ interface UserCredential {
 
 type propsType = {
     auth: {
-        id: number,
+        id: string,
         avatar: string,
         name: string
     },
@@ -35,4 +35,15 @@ type userType = {
     name: string
 }
 
-export {propsType, receive, DataType, userType}
+type newChatType = {
+    user: {
+        id: string,
+        name: string,
+        avatar: string
+    }, 
+    chatlist: string, 
+    show: SetStateAction, 
+    setShow: SetStateAction
+}
+
+export {propsType, receive, DataType, userType, newChatType}

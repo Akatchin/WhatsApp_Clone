@@ -2,11 +2,11 @@ import { MessageLine, MessageItem, MessageText, MessageDate } from "./styled"
 
 type DataObject = {
     data: {
-        author: number,
+        author: string,
         body: string
     },
     user: {
-        id: number;
+        id: string;
         avatar: string,
         name: string
     }

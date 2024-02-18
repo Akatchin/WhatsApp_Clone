@@ -35,25 +35,9 @@ export const ChatWindow = ({auth}: propsType) => {
     const [listening, setListening] = useState(false)
 
     const [list, setList] = useState([
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
-        {author: 1234, body: "bla bla bla bla"},
-        {author: 123, body: "bla bla bla"},
+        {author: "1234", body: "bla bla bla bla"},
+        {author: "1234", body: "bla bla bla bla"},
+        {author: "123", body: "bla bla bla"}
     ])
 
     useEffect(() => {
@@ -98,7 +82,7 @@ export const ChatWindow = ({auth}: propsType) => {
     }
     
     const handleSendClick = () => {
-
+        setList([])
     }
 
     const { user } = useSelector(chatActive)
@@ -107,7 +91,7 @@ export const ChatWindow = ({auth}: propsType) => {
         <Chat>
             <Header>
                 <HeaderInfo>
-                    <Avatar src={user.image} />
+                    <Avatar src={user.avatar} />
                     <UserName>
                         Thiago
                     </UserName>
@@ -122,7 +106,8 @@ export const ChatWindow = ({auth}: propsType) => {
 
             </Header>
             <Body ref={body}>
-                {list.map((item, key) => (
+                {
+                list.map((item, key) => (
                     <Message
                         key={key}
                         data={item}

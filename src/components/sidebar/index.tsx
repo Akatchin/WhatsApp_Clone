@@ -43,6 +43,7 @@ export const SideBar = () => {
 
     const activeChat = (key: object) => {
         dispatch(enable(key))
+        setChatList([])
     }
 
     if(thisLogin !== true) {
@@ -84,7 +85,7 @@ export const SideBar = () => {
                         <ChatListItem
                             key={key}
                             data={item}
-                            active={user.chatId == chatlist[key]/*.chatId*/}
+                            active={user.id == chatlist[key]/*.chatId*/}
                             onClick={() => activeChat(chatlist[key])}
                         />
                     ))}
