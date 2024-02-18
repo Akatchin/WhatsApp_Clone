@@ -26,7 +26,9 @@ import Login from '../../login';
 
 export const SideBar = () => {
 
-    const [chatlist, setChatList] = useState([])
+    const [chatlist, setChatList] = useState([
+        
+    ])
 
     const [showNewChat, setShowNewChat] = useState(false)
     const [thisLogin, setThisLogin] = useState(false)
@@ -82,7 +84,7 @@ export const SideBar = () => {
                         <ChatListItem
                             key={key}
                             data={item}
-                            active={user.chatId == chatlist[key].chatId}
+                            active={user.chatId == chatlist[key]/*.chatId*/}
                             onClick={() => activeChat(chatlist[key])}
                         />
                     ))}

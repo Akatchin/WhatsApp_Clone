@@ -1,4 +1,4 @@
-import React from "react";
+import {useRef} from "react";
 
 import { 
     Chat, Body,
@@ -23,10 +23,12 @@ import { useSelector } from "react-redux";
 import { chatActive } from "../../redux/sliceActive";
 import { useState, useEffect } from "react";
 import { Message } from "../messageItem";
+import { propsType } from "../../type";
 
-export const ChatWindow = ({auth}) => {
+
+export const ChatWindow = ({auth}: propsType) => {
     
-    const body = React.useRef<HTMLInputElement>(null)
+    const body = useRef<HTMLInputElement| null>(null)
 
     const [emojiOpen, setEmojiOpen] = useState(false)
     const [text, setText] = useState("")
@@ -55,8 +57,10 @@ export const ChatWindow = ({auth}) => {
     ])
 
     useEffect(() => {
-        if(body.current.scrollHeight > body.current.offsetHeight) {
-            body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight
+        if(body.current !== null) {
+            if(body.current.scrollHeight > body.current.offsetHeight) {
+                body.current.scrollTop = body.current.scrollHeight - body.current.offsetHeight        
+        }
         }
     }, [list])
 
@@ -91,6 +95,10 @@ export const ChatWindow = ({auth}) => {
 
     const handleCloseEmoji = () => {
         setEmojiOpen(false)
+    }
+    
+    const handleSendClick = () => {
+
     }
 
     const { user } = useSelector(chatActive)

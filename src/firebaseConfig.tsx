@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, FacebookAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
+import { userType } from "./type";
 
 const firebaseConfig = {
     apiKey: "AIzaSyABR0WdAy-j8m7KvAzPcZEX9hmMsPyi5s0",
@@ -20,7 +21,7 @@ const firebaseConfig = {
 
   const db = getFirestore(app)
 
-  const addUsers = async (user) => {
+  const addUsers = async (user: userType) => {
    
     try {
         const docRef = await addDoc(collection(db, "users"), {
