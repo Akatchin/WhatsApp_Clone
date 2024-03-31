@@ -11,8 +11,8 @@ const Login = ({ onReceive }: receive) => {
 
     const handleLoginData = (result: any) => {
         const credential = FacebookAuthProvider.credentialFromResult(result);
-        const accessToken = credential?.accessToken;
-        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${accessToken}`)
+        const _tokenResponse = credential?.accessToken;
+        fetch(`https://graph.facebook.com/${result.user.providerData[0].uid}/picture?type=large&access_token=${_tokenResponse}`)
             .then((response) => response.blob())
             .then((blob) => URL.createObjectURL(blob))
             .then((avatarProfile) => {
