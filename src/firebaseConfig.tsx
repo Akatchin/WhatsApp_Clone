@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, FacebookAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, setDoc, doc } from "firebase/firestore";
 import { userType } from "./type";
 
 const firebaseConfig = {
@@ -24,15 +23,18 @@ const firebaseConfig = {
   const addUsers = async (user: userType) => {
    
     try {
-        const docRef = await addDoc(collection(db, "users"), {
-          id: user.id,
-          name: user.name,
-          avatar: user.avatar    
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
-}
+      const docRef = doc(collection(db, "users"));
+
+      await setDoc(docRef, {
+        id: user.id,
+        name: user.name,
+        avatar: user.avatar
+      });
+
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 
   export {auth, provider, addUsers}
